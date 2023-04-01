@@ -6,7 +6,7 @@
  
 >Topics Inside
  * Net Core 6
- * Domain Driven Design+
+ * Domain Driven Design
  * Dependency Injection
  * Generic Repository
  * N-Tier Architecture
