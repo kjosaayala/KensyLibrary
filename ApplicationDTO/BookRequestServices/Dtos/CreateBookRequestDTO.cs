@@ -9,7 +9,7 @@ namespace Application.BookRequestServices.Dtos
 {
     public class CreateBookRequestDTO
     {
-        public int UserId { get; set; }
+        public int LectorId { get; set; }
         public DateTime DateRequestOpen { get; set; }
         public DateTime? DateRequestClosed { get; set; }
         public RequestStatus RequestStatus { get; set; }

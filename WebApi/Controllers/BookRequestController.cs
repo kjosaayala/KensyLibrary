@@ -18,19 +18,19 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<BookRequestDTO> GetById(int id)
         {
-            return await _bookRequestService.GetById(id);
+            return await _bookRequestService.GetBookRequestById(id);
         }
 
         [HttpGet]
         public async Task<List<BookRequestDTO>> GetAll()
         {
-            return await _bookRequestService.GetAll();
+            return await _bookRequestService.GetAllBookRequests();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateBookRequestDTO model)
         {
-            var response = await _bookRequestService.Create(model);
+            var response = await _bookRequestService.GenerateBookRequest(model);
             return Ok(response);
         }
     }

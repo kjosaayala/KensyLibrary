@@ -10,7 +10,7 @@ namespace Application.LanguageServices
 {
     public interface ILanguageService
     {
-        Task<RequestResultDTO> CreateLanguage(CreateLanguageDTO model);
+        Task<RequestResultDTO> AddLanguage(CreateLanguageDTO model);
         Task<RequestResultDTO> UpdateLanguage(LanguageDTO model);
         Task<RequestResultDTO> DisableLanguage(int id);
         Task<List<LanguageDTO>> GetAllLanguages();

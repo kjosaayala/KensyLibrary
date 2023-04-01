@@ -21,7 +21,7 @@ namespace Application.EditorialServices
             _editorialRepository = editorialRepository;
         }
 
-        public async Task<RequestResultDTO> CreateEditorial(CreateEditorialDTO model)
+        public async Task<RequestResultDTO> AddEditorial(CreateEditorialDTO model)
         {
             try
             {

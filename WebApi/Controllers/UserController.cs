@@ -9,29 +9,36 @@ namespace WebApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly ILectorService _lectorService;
 
-        public UserController(IUserService userService)
+        public UserController(ILectorService lectorService)
         {
-            _userService = userService;
+            _lectorService = lectorService;
         }
 
         [HttpGet]
-        public async Task<UserDTO> GetById(int id)
+        public async Task<LectorDTO> GetById(int id)
         {
-            return await _userService.GetById(id);
+            return await _lectorService.GetLectorById(id);
         }
 
         [HttpGet]
-        public async Task<List<UserDTO>> GetAll()
+        public async Task<List<LectorDTO>> GetAll()
         {
-            return await _userService.GetAll();
+            return await _lectorService.GetAllLectors();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateUserDTO model)
+        public async Task<IActionResult> Create([FromBody] CreateLectorDTO model)
         {
-            var response = await _userService.Create(model);
+            var response = await _lectorService.AddLector(model);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] LectorDTO model)
+        {
+            var response = await _lectorService.UpdateLector(model);
             return Ok(response);
         }
     }

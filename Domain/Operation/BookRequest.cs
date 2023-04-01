@@ -13,9 +13,9 @@ namespace Domain.Operation
     [Table("BookRequests", Schema = "operation")]
     public class BookRequest : Entity
     {
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
+        public int LectorId { get; set; }
+        [ForeignKey("Lector Id")]
+        public virtual Lector Lector { get; set; }
         public DateTime DateRequestOpen { get; set; }
         public DateTime? DateRequestClosed { get; set; }
         public RequestStatus RequestStatus { get; set; }

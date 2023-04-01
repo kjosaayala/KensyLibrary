@@ -11,10 +11,10 @@ namespace Application.BookRequestServices
 {
     public interface IBookRequestService
     {
-        Task<RequestResultDTO> Create(CreateBookRequestDTO model);
-        Task<RequestResultDTO> Update(BookRequestDTO model);
-        Task<RequestResultDTO> Disable(int id);
-        Task<List<BookRequestDTO>> GetAll();
-        Task<BookRequestDTO> GetById(int id);
+        Task<RequestResultDTO> GenerateBookRequest(CreateBookRequestDTO model);
+        Task<RequestResultDTO> UpdateBookRequest(BookRequestDTO model);
+        Task<RequestResultDTO> DisableBookRequest(int id);
+        Task<List<BookRequestDTO>> GetAllBookRequests();
+        Task<BookRequestDTO> GetBookRequestById(int id);
     }
 }

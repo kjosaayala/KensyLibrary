@@ -22,7 +22,7 @@ namespace Application.GenreServices
             _genreRepository = genreRepository;
         }
 
-        public async Task<RequestResultDTO> Create(CreateGenreDTO model)
+        public async Task<RequestResultDTO> AddGenre(CreateGenreDTO model)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace Application.GenreServices
 
                 return new RequestResultDTO
                 {
-                    SuccesMessage = "Genre created successfully",
+                    SuccesMessage = "Genre added successfully",
                     Success = true,
                     Error = false
                 };
@@ -52,7 +52,7 @@ namespace Application.GenreServices
             }
         }
 
-        public async Task<RequestResultDTO> Disable(int id)
+        public async Task<RequestResultDTO> DisableGenre(int id)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace Application.GenreServices
             }
         }
 
-        public async Task<List<GenreDTO>> GetAll()
+        public async Task<List<GenreDTO>> GetAllGenres()
         {
             return await _genreRepository.GetAll<Genre>()
                 .Select(x => new GenreDTO
@@ -89,7 +89,7 @@ namespace Application.GenreServices
                 }).ToListAsync();
         }
 
-        public async Task<GenreDTO> GetById(int id)
+        public async Task<GenreDTO> GetGenreById(int id)
         {
             var genre = await _genreRepository.GetById(id);
 
@@ -101,7 +101,7 @@ namespace Application.GenreServices
             };
         }
 
-        public async Task<RequestResultDTO> Update(GenreDTO model)
+        public async Task<RequestResultDTO> UpdateGenre(GenreDTO model)
         {
             try
             {

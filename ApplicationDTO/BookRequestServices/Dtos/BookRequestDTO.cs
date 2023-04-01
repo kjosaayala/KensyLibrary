@@ -11,8 +11,8 @@ namespace Application.BookRequestServices.Dtos
     public class BookRequestDTO
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
-        public string User { get; set; }
+        public int LectorId { get; set; }
+        public string Lector { get; set; }
         public DateTime DateRequestOpen { get; set; }
         public DateTime? DateRequestClosed { get; set; }
         public RequestStatus RequestStatus { get; set; }

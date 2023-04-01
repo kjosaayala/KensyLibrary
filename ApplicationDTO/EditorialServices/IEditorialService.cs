@@ -10,7 +10,7 @@ namespace Application.EditorialServices
 {
     public interface IEditorialService
     {
-        Task<RequestResultDTO> CreateEditorial(CreateEditorialDTO model);
+        Task<RequestResultDTO> AddEditorial(CreateEditorialDTO model);
         Task<RequestResultDTO> UpdateEditorial(EditorialDTO model);
         Task<RequestResultDTO> DisableEditorial(int id);
         Task<List<EditorialDTO>> GetAllEditorials();

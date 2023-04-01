@@ -17,7 +17,7 @@ namespace WebApi.DependencyInjection
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IAuthorService, AuthorService>();
             services.AddTransient<IGenreService, GenreService>();
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ILectorService, LectorService>();
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IEditorialService, EditorialService>();
             services.AddTransient<IBookRequestService, BookRequestService>();

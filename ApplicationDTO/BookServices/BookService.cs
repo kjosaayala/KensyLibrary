@@ -23,7 +23,7 @@ namespace Application.BookServices
             _bookRepository = bookRepository;
         }
 
-        public async Task<RequestResultDTO> Create(CreateBookDTO model)
+        public async Task<RequestResultDTO> AddBook(CreateBookDTO model)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Application.BookServices
 
                 return new RequestResultDTO
                 {
-                    SuccesMessage = "Book created successfully",
+                    SuccesMessage = "Book added successfully",
                     Success = true,
                     Error = false
                 };
@@ -62,7 +62,7 @@ namespace Application.BookServices
             }
         }
 
-        public async Task<RequestResultDTO> Disable(int id)
+        public async Task<RequestResultDTO> DisableBook(int id)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace Application.BookServices
             }
         }
 
-        public async Task<List<BookDTO>> GetAll()
+        public async Task<List<BookDTO>> GetAllBooks()
         {
             return await _bookRepository.GetAll<Book>()
                 .Select(
@@ -111,7 +111,7 @@ namespace Application.BookServices
                     .Select(b => new BookRequestDTO
                     {
                         Id = b.Id,
-                        UserId = b.UserId,
+                        LectorId = b.LectorId,
                         DateRequestClosed = b.DateRequestClosed,
                         DateRequestOpen = b.DateRequestOpen,
                         RequestStatus = b.RequestStatus,
@@ -119,7 +119,7 @@ namespace Application.BookServices
                 }).ToListAsync();
         }
 
-        public async Task<BookDTO> GetById(int id)
+        public async Task<BookDTO> GetBookById(int id)
         {
             var book = await _bookRepository.GetById(id);
 
@@ -141,7 +141,7 @@ namespace Application.BookServices
                 .Select(b => new BookRequestDTO
                 {
                     Id = b.Id,
-                    UserId = b.UserId,
+                    LectorId = b.LectorId,
                     DateRequestClosed = b.DateRequestClosed,
                     DateRequestOpen = b.DateRequestOpen,
                     RequestStatus = b.RequestStatus,
@@ -149,7 +149,7 @@ namespace Application.BookServices
             };
         }
 
-        public async Task<RequestResultDTO> Update(BookDTO model)
+        public async Task<RequestResultDTO> UpdateBook(BookDTO model)
         {
             try
             {

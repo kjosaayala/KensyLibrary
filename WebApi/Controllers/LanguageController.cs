@@ -19,19 +19,19 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<LanguageDTO> GetById(int id)
         {
-            return await _languageService.GetById(id);
+            return await _languageService.GetLanguageById(id);
         }
 
         [HttpGet]
         public async Task<List<LanguageDTO>> GetAll()
         {
-            return await _languageService.GetAll();
+            return await _languageService.GetAllLanguages();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateLanguageDTO model)
         {
-            var response = await _languageService.Create(model);
+            var response = await _languageService.AddLanguage(model);
             return Ok(response);
         }
     }

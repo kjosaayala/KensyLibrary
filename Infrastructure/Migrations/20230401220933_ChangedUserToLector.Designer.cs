@@ -4,6 +4,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(KensyLibraryDbContext))]
-    partial class KensyLibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230401220933_ChangedUserToLector")]
+    partial class ChangedUserToLector
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -398,11 +401,14 @@ namespace Infrastructure.Migrations
                     b.Property<int>("RequestStatus")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("LectorId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("BookRequests", "operation");
                 });
@@ -500,7 +506,7 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Domain.Data.Lector", "Lector")
                         .WithMany("BookRequests")
-                        .HasForeignKey("LectorId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

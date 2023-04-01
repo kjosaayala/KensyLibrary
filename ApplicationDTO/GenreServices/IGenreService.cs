@@ -10,7 +10,7 @@ namespace Application.GenreServices
 {
     public interface IGenreService
     {
-        Task<RequestResultDTO> CreateGenre(CreateGenreDTO model);
+        Task<RequestResultDTO> AddGenre(CreateGenreDTO model);
         Task<RequestResultDTO> UpdateGenre(GenreDTO model);
         Task<RequestResultDTO> DisableGenre(int id);
         Task<List<GenreDTO>> GetAllGenres();

@@ -15,20 +15,20 @@ using Z.Expressions;
 
 namespace Application.UserServices
 {
-    public class UserService : IUserService
+    public class LectorService : ILectorService
     {
-        private readonly IGenericRepository<User> _userRepository;
+        private readonly IGenericRepository<Lector> _lectorRepository;
 
-        public UserService(IGenericRepository<User> userRepository)
+        public LectorService(IGenericRepository<Lector> userRepository)
         {
-            _userRepository = userRepository;
+            _lectorRepository = userRepository;
         }
 
-        public async Task<RequestResultDTO> Create(CreateUserDTO model)
+        public async Task<RequestResultDTO> AddLector(CreateLectorDTO model)
         {
             try
             {
-                User user = new User
+                Lector lector = new Lector
                 {
                     Name = model.Name,
                     Birthdate = model.Birthdate,
@@ -37,12 +37,12 @@ namespace Application.UserServices
                     Address = model.Address,
 
                 };
-                _userRepository.Create(user);
-                await _userRepository.CommitAsync();
+                _lectorRepository.Create(lector);
+                await _lectorRepository.CommitAsync();
 
                 return new RequestResultDTO
                 {
-                    SuccesMessage = "User created successfully",
+                    SuccesMessage = "Lector added successfully",
                     Success = true,
                     Error = false
                 };
@@ -58,16 +58,16 @@ namespace Application.UserServices
             }
         }
 
-        public async Task<RequestResultDTO> Disable(int id)
+        public async Task<RequestResultDTO> DisableLector(int id)
         {
             try
             {
-                await _userRepository.Disable(id);
-                await _userRepository.CommitAsync();
+                await _lectorRepository.Disable(id);
+                await _lectorRepository.CommitAsync();
 
                 return new RequestResultDTO
                 {
-                    SuccesMessage = "User disabled successfully",
+                    SuccesMessage = "Lector disabled successfully",
                     Success = true,
                     Error = false
                 };
@@ -84,10 +84,10 @@ namespace Application.UserServices
             }
         }
 
-        public async Task<List<UserDTO>> GetAll()
+        public async Task<List<LectorDTO>> GetAllLectors()
         {
-            return await _userRepository.GetAll<User>()
-                .Select(user => new UserDTO
+            return await _lectorRepository.GetAll<Lector>()
+                .Select(user => new LectorDTO
                 {
                     Id = user.Id,
                     Name = user.Name,
@@ -99,7 +99,7 @@ namespace Application.UserServices
                     r => new BookRequestDTO
                     {
                         Id = r.Id,
-                        UserId = r.UserId,
+                        LectorId = r.LectorId,
                         DateRequestClosed = r.DateRequestClosed,
                         DateRequestOpen = r.DateRequestOpen,
                         RequestStatus = r.RequestStatus,
@@ -107,11 +107,11 @@ namespace Application.UserServices
                 }).ToListAsync();
         }
 
-        public async Task<UserDTO> GetById(int id)
+        public async Task<LectorDTO> GetLectorById(int id)
         {
-            var user = await _userRepository.GetById(id);
+            var user = await _lectorRepository.GetById(id);
 
-            return new UserDTO
+            return new LectorDTO
             {
                 Id = user.Id,
                 Name = user.Name,
@@ -123,7 +123,7 @@ namespace Application.UserServices
                     r => new BookRequestDTO
                     {
                         Id = r.Id,
-                        UserId = r.UserId,
+                        LectorId = r.LectorId,
                         DateRequestClosed = r.DateRequestClosed,
                         DateRequestOpen = r.DateRequestOpen,
                         RequestStatus = r.RequestStatus,
@@ -131,24 +131,24 @@ namespace Application.UserServices
             };
         }
 
-        public async Task<RequestResultDTO> Update(UserDTO model)
+        public async Task<RequestResultDTO> UpdateLector(LectorDTO model)
         {
             try
             {
-                var user = await _userRepository.GetById(model.Id);
-                user.Name = model.Name;
-                user.Birthdate = model.Birthdate;
-                user.Email = model.Email;
-                user.PhoneNumber = model.PhoneNumber;
-                user.Address = model.Address;
+                var lector = await _lectorRepository.GetById(model.Id);
+                lector.Name = model.Name;
+                lector.Birthdate = model.Birthdate;
+                lector.Email = model.Email;
+                lector.PhoneNumber = model.PhoneNumber;
+                lector.Address = model.Address;
 
-                _userRepository.Update(model.Id, user);
+                _lectorRepository.Update(model.Id, lector);
 
-                await _userRepository.CommitAsync();
+                await _lectorRepository.CommitAsync();
 
                 return new RequestResultDTO
                 {
-                    SuccesMessage = "User UPDATED successfully",
+                    SuccesMessage = "Lector updated successfully",
                     Success = true,
                     Error = false
                 };

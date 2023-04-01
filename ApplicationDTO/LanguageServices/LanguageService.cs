@@ -21,7 +21,7 @@ namespace Application.LanguageServices
             _languagRepository = languagRepository;
         }
 
-        public async Task<RequestResultDTO> CreateLanguage(CreateLanguageDTO model)
+        public async Task<RequestResultDTO> AddLanguage(CreateLanguageDTO model)
         {
             try
             {

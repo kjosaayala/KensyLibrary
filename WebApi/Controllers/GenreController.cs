@@ -19,19 +19,19 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<GenreDTO> GetById(int id)
         {
-            return await _genreService.GetById(id);
+            return await _genreService.GetGenreById(id);
         }
 
         [HttpGet]
         public async Task<List<GenreDTO>> GetAll()
         {
-            return await _genreService.GetAll();
+            return await _genreService.GetAllGenres();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateGenreDTO model)
         {
-            var response = await _genreService.Create(model);
+            var response = await _genreService.AddGenre(model);
             return Ok(response);
         }
     }

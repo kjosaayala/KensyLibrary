@@ -22,13 +22,13 @@ namespace Application.BookRequestServices
             _bookRequestRepository = bookRequestRepository;
         }
 
-        public async Task<RequestResultDTO> Create(CreateBookRequestDTO model)
+        public async Task<RequestResultDTO> GenerateBookRequest(CreateBookRequestDTO model)
         {
             try
             {
                 BookRequest bookRequest = new BookRequest
                 {
-                    UserId = model.UserId,
+                    LectorId = model.LectorId,
                     DateRequestOpen = model.DateRequestOpen,
                     DateRequestClosed = model.DateRequestClosed,
                     RequestStatus = model.RequestStatus,
@@ -60,7 +60,7 @@ namespace Application.BookRequestServices
             }
         }
 
-        public async Task<RequestResultDTO> Disable(int id)
+        public async Task<RequestResultDTO> DisableBookRequest(int id)
         {
             try
             {
@@ -86,14 +86,14 @@ namespace Application.BookRequestServices
             }
         }
 
-        public async Task<List<BookRequestDTO>> GetAll()
+        public async Task<List<BookRequestDTO>> GetAllBookRequests()
         {
             return await _bookRequestRepository.GetAll<BookRequest>()
                 .Select(x => new BookRequestDTO
                 {
                     Id = x.Id,
-                    User = x.User.Name,
-                    UserId = x.Id,
+                    Lector = x.Lector.Name,
+                    LectorId = x.Id,
                     DateRequestClosed = x.DateRequestClosed,
                     DateRequestOpen = x.DateRequestOpen,
                     RequestStatus = x.RequestStatus,
@@ -108,15 +108,15 @@ namespace Application.BookRequestServices
                 }).ToListAsync();
         }
 
-        public async Task<BookRequestDTO> GetById(int id)
+        public async Task<BookRequestDTO> GetBookRequestById(int id)
         {
             var bookRequest = await _bookRequestRepository.GetById(id);
 
             return new BookRequestDTO
             {
                 Id = bookRequest.Id,
-                User = bookRequest.User.Name,
-                UserId = bookRequest.Id,
+                Lector = bookRequest.Lector.Name,
+                LectorId = bookRequest.Id,
                 DateRequestClosed = bookRequest.DateRequestClosed,
                 DateRequestOpen = bookRequest.DateRequestOpen,
                 RequestStatus = bookRequest.RequestStatus,
@@ -131,12 +131,12 @@ namespace Application.BookRequestServices
             };
         }
 
-        public async Task<RequestResultDTO> Update(BookRequestDTO model)
+        public async Task<RequestResultDTO> UpdateBookRequest(BookRequestDTO model)
         {
             try
             {
                 var bookRequest = await _bookRequestRepository.GetById(model.Id);
-                bookRequest.UserId = model.UserId;
+                bookRequest.LectorId = model.LectorId;
                 bookRequest.DateRequestClosed = model.DateRequestClosed;
                 bookRequest.DateRequestOpen = model.DateRequestOpen;
                 bookRequest.RequestStatus = model.RequestStatus;

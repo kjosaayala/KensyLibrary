@@ -19,19 +19,19 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<EditorialDTO> GetById(int id)
         {
-            return await _editorialService.GetById(id);
+            return await _editorialService.GetEditorialById(id);
         }
 
         [HttpGet]
         public async Task<List<EditorialDTO>> GetAll()
         {
-            return await _editorialService.GetAll();
+            return await _editorialService.GetAllEditorials();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateEditorialDTO model)
         {
-            var response = await _editorialService.Create(model);
+            var response = await _editorialService.AddEditorial(model);
             return Ok(response);
         }
     }

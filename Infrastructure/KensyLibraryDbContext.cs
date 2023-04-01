@@ -21,7 +21,7 @@ namespace Infrastructure
         public DbSet<Editorial> Editorials { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Language> Languages { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Lector> Lectors { get; set; }
         public DbSet<BookRequest> BookRequests { get; set; }
         public DbSet<BookRequestDetail> BookRequestDetail { get; set; }
 

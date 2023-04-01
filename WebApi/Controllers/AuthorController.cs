@@ -19,19 +19,26 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<AuthorDTO> GetById(int id)
         {
-            return await _authorService.GetById(id);
+            return await _authorService.GetAuthorById(id);
         }
 
         [HttpGet]
         public async Task<List<AuthorDTO>> GetAll()
         {
-            return await _authorService.GetAll();
+            return await _authorService.GetAllAuthors();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateAuthorDTO model)
         {
-            var response = await _authorService.Create(model);
+            var response = await _authorService.CreateAuthor(model);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateAuthorDTO model)
+        {
+            var response = await _authorService.UpdateAuthor(model);
             return Ok(response);
         }
     }
