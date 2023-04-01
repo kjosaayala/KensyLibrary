@@ -149,6 +149,11 @@ namespace Application.BookServices
             };
         }
 
+        public async Task<List<BookDTO>> GetBooksByFilter(RequestBookFilterDTO filterModel)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<RequestResultDTO> UpdateBook(BookDTO model)
         {
             try

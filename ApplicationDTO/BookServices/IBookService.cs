@@ -14,6 +14,7 @@ namespace Application.BookServices
         Task<RequestResultDTO> UpdateBook(BookDTO model);
         Task<RequestResultDTO> DisableBook(int id);
         Task<List<BookDTO>> GetAllBooks();
+        Task<List<BookDTO>> GetBooksByFilter (RequestBookFilterDTO filterModel);
         Task<BookDTO> GetBookById(int id);
     }
 }
