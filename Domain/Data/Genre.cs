@@ -11,6 +11,7 @@ namespace Domain.Data
     [Table("Genres", Schema = "data")]
     public class Genre : Entity
     {
+
         public string Name { get; set; }
         public string Description { get; set; }
     }
